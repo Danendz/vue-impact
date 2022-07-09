@@ -28,7 +28,10 @@ export default {
       '~/components',
       '~/components/GachaMain',
       '~/components/GachaMain/GachaBanners',
-      '~/components/GachaMain/GachaWishContent'
+      '~/components/GachaMain/GachaWishContent',
+      '~/components/UI',
+      '~/components/GachaWishCounter',
+      '~/components/GachaWishCounter/GachaExchange'
     ]
   },
 

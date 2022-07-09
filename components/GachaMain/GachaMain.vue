@@ -3,6 +3,7 @@
     <div style="position: relative; height: 100%">
       <GachaVideo :video="getVideo" />
       <GachaContent />
+      <GachaWishCounter />
     </div>
   </div>
 </template>

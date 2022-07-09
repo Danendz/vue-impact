@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition name="fade">
+    <transition name="fade" appear>
       <GachaBanners v-show="!getIsGaching" />
     </transition>
     <transition name="fade-wishContent">

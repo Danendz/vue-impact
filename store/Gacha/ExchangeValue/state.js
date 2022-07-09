@@ -1,3 +1,3 @@
 export default () => ( {
-    crystals: 16000
+    exchangeValue: 0
 })
