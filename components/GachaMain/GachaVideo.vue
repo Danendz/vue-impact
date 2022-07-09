@@ -49,7 +49,6 @@ export default {
 @media only screen and (max-width: 960px) {
   .gachaVideo {
     border-radius: 0;
-    height: 100vh;
   }
 }
 </style>
