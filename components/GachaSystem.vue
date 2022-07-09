@@ -3,60 +3,41 @@
     <h1 class="notInLandscape">
       Пожалуйста перевени свой телефон чтобы все заработало!
     </h1>
-    <progress v-show="!isLoaded" :value="progress" max="100">
-      {{ progress }}
-    </progress>
-    <GachaMain v-show="isLoaded" />
+    <p v-if="!isLoaded">Loading</p>
+    <GachaMain v-else />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-
-/* import axios from 'axios' */
+import CharacterService from '../API/charactersService'
 export default {
   name: 'GachaSystem',
   data() {
     return {
-      downloadedVideos: [],
       isLoaded: false,
-      progress: 0,
     }
   },
-  videoNames: ['bg', '3star1', '4star1', '4star10', '5star1', '5star10'],
   videos: [
-    '/gachaVideos/backgroundCropped.mp4',
-    '/gachaVideos/3star1comp.mp4',
-    '/gachaVideos/4star1comp.mp4',
-    '/gachaVideos/4star10comp.mp4',
-    '/gachaVideos/5star1comp.mp4',
-    '/gachaVideos/5star10comp.mp4',
+    'https://vue-impact.herokuapp.com/gachaVideos/backgroundCropped.mp4',
+    'https://vue-impact.herokuapp.com/gachaVideos/3star1comp.mp4',
+    'https://vue-impact.herokuapp.com/gachaVideos/4star1comp.mp4',
+    'https://vue-impact.herokuapp.com/gachaVideos/4star10comp.mp4',
+    'https://vue-impact.herokuapp.com/gachaVideos/5star1comp.mp4',
+    'https://vue-impact.herokuapp.com/gachaVideos/5star10comp.mp4',
   ],
+  async fetch() {
+    this.isLoaded = false
+    const characterData = await CharacterService.getCharacters()
+    const weaponData = await CharacterService.getWeapons()
+    this.$store.commit('Characters/setCharacters', characterData)
+    this.$store.commit('Weapons/setWeapons', weaponData)
+    this.isLoaded = true
+  },
   computed: {
     ...mapGetters('Gacha/GachaVideo', ['getVideo']),
   },
-  async beforeMount() {
-    this.isLoaded = false
-    await this.get()
-    this.isLoaded = true
-  },
-
-  methods: {
-    async get() {
-      await this.$options.videos.forEach(async (link, index) => {
-        const res = await fetch(link)
-        const blob = await res.blob()
-        this.progress += 16.6
-        this.$store.commit('Gacha/GachaVideo/setVideosLocal', [
-          this.$options.videoNames[index],
-          URL.createObjectURL(blob),
-        ])
-      })
-    },
-    getv() {
-      console.log(this.getVideo)
-    },
-  },
+  methods: {},
 }
 </script>
 

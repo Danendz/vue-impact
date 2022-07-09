@@ -3,7 +3,9 @@
     <transition name="fade">
       <GachaBanners v-show="!getIsGaching" />
     </transition>
-    <GachaWishContent v-show="getIsVisible" />
+    <transition name="fade-wishContent">
+      <GachaWishContent v-if="getIsVisible" />
+    </transition>
   </div>
 </template>
 
@@ -20,12 +22,17 @@ export default {
 </script>
 
 <style lang="scss">
+.fade-wishContent-enter-active,
 .fade-enter-active {
-  animation: fade 0.3s;
+  animation: fade 0.4s;
 }
 .fade-leave-active {
   animation: fade 0.3s reverse;
 }
+.fade-wishContent-leave-active {
+  animation: fade 0.1s reverse;
+}
+
 @keyframes fade {
   from {
     opacity: 0;

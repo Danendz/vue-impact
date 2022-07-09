@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!--     <img
-      class="gachaVideo"
-      src="/GachaImages/backgroundHolder.png"
-      alt="holder"
-    /> -->
     <video
       :key="video"
       style="background-image: url('/GachaImages/backgroundHolder.png')"
@@ -15,7 +10,6 @@
       @ended="setBgVideo"
     >
       <source :src="video" type="video/mp4" />
-      <p>{{ getIsGaching }}</p>
     </video>
   </div>
 </template>
@@ -24,7 +18,6 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'GachaVideo',
-
   props: {
     video: {
       type: String,
@@ -49,9 +42,9 @@ export default {
 .gachaVideo {
   position: relative;
   width: 100%;
-
   border-radius: 15px;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 @media only screen and (max-width: 960px) {
   .gachaVideo {

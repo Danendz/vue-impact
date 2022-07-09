@@ -1,5 +1,5 @@
 export default {
-  getCharacters(state) {
+  getItems(state) {
     return state.obtainCharacters
   },
   getBannerType(state) {

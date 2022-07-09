@@ -1,19 +1,53 @@
 <template>
   <div class="wishBtns">
-    <button @click="summon(1)">Использовать 1</button>
-    <button @click="summon(10)">Использовать 10</button>
+    <button @click="summonPreCalculate(1)">Использовать 1</button>
+    <button @click="summonPreCalculate(10)">Использовать 10</button>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-    name: 'WishBtns',
-    methods: {
-        summon(value){
-            this.$store.commit('Gacha/Gaching/setIsGaching',true)
-            this.$store.commit('Gacha/GachaVideo/setVideo', '3star1')
+  name: 'WishBtns',
+  computed: {
+    ...mapGetters('Gacha', ['getItems']),
+    ...mapGetters('Gacha/Primogems', ['getPrimogems']),
+    ...mapGetters('Gacha/Wishes', ['getWishes']),
+  },
+  methods: {
+    summonPreCalculate(value) {
+      const totalWishes = this.getWishes
+      const totalPrimogems = this.getPrimogems
+      if (totalWishes < value) {
+        const cost = totalPrimogems - (value - totalWishes) * 160
+        if (cost < 0) {
+          return console.log('not Enough')
         }
-    }
+      }
+      this.summon(value)
+    },
+    summon(value) {
+      this.calculate(value)
+      this.$store.commit('Gacha/summonCharacters', value)
+      const items = this.getItems
+      const itemsRarity = items.map((item) => item[0])
+      const maxRarity = Math.max(...itemsRarity)
+      const videoType = maxRarity + 'star' + value
+      this.$store.commit('Gacha/GachaVideo/setVideo', videoType)
+      this.$store.commit('Gacha/Gaching/setIsGaching', true)
+    },
+    calculate(value) {
+      const totalWishes = this.getWishes
+      if (value > totalWishes) {
+        value -= totalWishes
+        this.$store.commit('Gacha/Primogems/remove', value * 160)
+        this.$store.commit('Gacha/Wishes/remove', totalWishes)
+      } else {
+        this.$store.commit('Gacha/Wishes/remove', value)
+      }
+    },
+  },
 }
 </script>
 

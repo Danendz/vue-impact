@@ -1,9 +1,13 @@
 export default {
   setVideo(state, videoType) {
-    state.video = state.videos[videoType]
+    const videos = {
+      bg: '/gachaVideos/backgroundCropped.mp4',
+      '3star1': '/gachaVideos/3star1comp.mp4',
+      '4star1': '/gachaVideos/4star1comp.mp4',
+      '4star10': '/gachaVideos/4star10comp.mp4',
+      '5star1': '/gachaVideos/5star1comp.mp4',
+      '5star10': '/gachaVideos/5star10comp.mp4',
+    }
+    state.video = videos[videoType]
   },
-  setVideosLocal(state, props){
-    console.log(props)
-    state.videos[props[0]] = props[1]
-  }
 }

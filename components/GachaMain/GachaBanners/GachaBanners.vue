@@ -55,7 +55,8 @@ export default {
     height: 60%;
     justify-content: center;
     .bannerImage {
-      width: 100%;
+      width: auto;
+      height: auto;
       user-select: none;
       -webkit-user-drag: none;
       border-radius: 10px;
@@ -95,6 +96,16 @@ export default {
       width: 100%;
       .bannerImage {
         width: 60%;
+      }
+      @keyframes translate-out {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translate(-20px);
+          opacity: 0;
+        }
       }
     }
   }
