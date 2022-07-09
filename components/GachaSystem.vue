@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 /* import axios from 'axios' */
 export default {
   name: 'GachaSystem',
@@ -21,6 +23,7 @@ export default {
       progress: 0,
     }
   },
+  videoNames: ['bg', '3star1', '4star1', '4star10', '5star1', '5star10'],
   videos: [
     '/gachaVideos/backgroundCropped.mp4',
     '/gachaVideos/3star1comp.mp4',
@@ -29,20 +32,29 @@ export default {
     '/gachaVideos/5star1comp.mp4',
     '/gachaVideos/5star10comp.mp4',
   ],
+  computed: {
+    ...mapGetters('Gacha/GachaVideo', ['getVideo']),
+  },
   async beforeMount() {
     this.isLoaded = false
     await this.get()
     this.isLoaded = true
   },
+
   methods: {
     async get() {
-      await this.$options.videos.forEach(async (link) => {
+      await this.$options.videos.forEach(async (link, index) => {
         const res = await fetch(link)
         const blob = await res.blob()
         this.progress += 16.6
-        console.log(this.progress)
-        console.log(URL.createObjectURL(blob))
+        this.$store.commit('Gacha/GachaVideo/setVideosLocal', [
+          this.$options.videoNames[index],
+          URL.createObjectURL(blob),
+        ])
       })
+    },
+    getv() {
+      console.log(this.getVideo)
     },
   },
 }
