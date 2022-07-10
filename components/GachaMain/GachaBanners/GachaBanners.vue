@@ -55,7 +55,8 @@ export default {
     height: 60%;
     justify-content: center;
     .bannerImage {
-      width: auto;
+      max-width: 1100px;
+      width: 100%;
       height: auto;
       user-select: none;
       -webkit-user-drag: none;

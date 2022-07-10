@@ -128,7 +128,6 @@ export default {
   width: 80%;
   height: fit-content;
   margin-top: 0;
-  background-color: rgba(0, 0, 0, 0.171);
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);

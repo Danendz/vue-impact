@@ -7,6 +7,24 @@ body {
   background-color: #34495e;
 }
 
+.page-enter-active {
+  animation: fade .3s;
+}
+
+.page-leave-active{
+  animation: fade .3s reverse;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
 #__layout {
   display: flex;
   color: white;
@@ -29,6 +47,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 ::-webkit-scrollbar {
   width: 10px;
