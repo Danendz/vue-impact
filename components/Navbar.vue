@@ -54,7 +54,7 @@ export default {
   padding: 3px 0;
 
   .arrow {
-    transition: .3s;
+    transition: 0.3s;
     cursor: pointer;
     width: 35px;
     text-align: center;
@@ -71,6 +71,10 @@ export default {
     img {
       width: 40px;
       height: 40px;
+      transition: 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }
