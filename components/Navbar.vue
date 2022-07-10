@@ -11,7 +11,7 @@
         <img alt="inventory" src="/NavbarIcons/icon_Inventorye.webp" />
       </NuxtLink>
       <NuxtLink to="/characters">
-        <img alt="character" src="/NavbarIcons/icon_Character.webp" />
+        <img alt="character" src="~/assets/NavbarIcons/icon_Character.webp" />
       </NuxtLink>
     </div>
     <i
