@@ -3,8 +3,10 @@
     <h1 class="notInLandscape">
       Пожалуйста перевени свой телефон чтобы все заработало!
     </h1>
-    <p v-if="!isLoaded">Loading</p>
-    <GachaMain v-else />
+
+    <p v-show="!isLoaded">Loading</p>
+
+    <GachaMain v-show="isLoaded" />
   </div>
 </template>
 

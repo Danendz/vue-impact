@@ -1,7 +1,10 @@
 <template>
-  <div class="wishBtns">
-    <button @click="summonPreCalculate(1)">Использовать 1</button>
-    <button @click="summonPreCalculate(10)">Использовать 10</button>
+  <div>
+    <TempModal :modal="modal">У вас недостаточно средств!</TempModal>
+    <div class="wishBtns">
+      <button @click="summonPreCalculate(1)">Использовать 1</button>
+      <button @click="summonPreCalculate(10)">Использовать 10</button>
+    </div>
   </div>
 </template>
 
@@ -10,6 +13,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'WishBtns',
+  data() {
+    return {
+      modal: false,
+    }
+  },
   computed: {
     ...mapGetters('Gacha', ['getItems']),
     ...mapGetters('Gacha/Primogems', ['getPrimogems']),
@@ -22,7 +30,11 @@ export default {
       if (totalWishes < value) {
         const cost = totalPrimogems - (value - totalWishes) * 160
         if (cost < 0) {
-          return console.log('not Enough')
+          this.modal = true
+          setTimeout(() => {
+            this.modal = false
+          }, 2000)
+          return
         }
       }
       this.summon(value)

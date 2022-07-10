@@ -1,12 +1,14 @@
 <template>
-  <div :class="[temp_modal, { active: modal }]">
-    <div
-      style="background-color: rgba(0, 0, 0, 0.44)"
-      class="temp_modal_content"
-    >
-      <slot></slot>
+  <transition name="fade" appear>
+    <div :key="modal" :class="['temp_modal', { active: modal }]">
+      <div
+        style="background-color: rgba(0, 0, 0, 0.44)"
+        class="temp_modal_content"
+      >
+        <slot></slot>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -33,6 +35,7 @@ export default {
   z-index: 1;
 
   .temp_modal_content {
+    font-size: 20px;
     position: relative;
     background-color: #e5e2db;
     border-radius: 10px;
@@ -45,17 +48,17 @@ export default {
 
     color: white;
   }
-
-  .temp_modal.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
-
-@media only screen and (max-width: 730px) {
-  .temp_modal_content {
-    width: 450px;
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width: 960px) {
+  .temp_modal {
+    .temp_modal_content {
+      width: 450px;
+    }
   }
 }
 </style>
