@@ -15,9 +15,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@assets/default.scss'
-  ],
+  css: ['@assets/default.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -31,8 +29,9 @@ export default {
       '~/components/GachaMain/GachaWishContent',
       '~/components/UI',
       '~/components/GachaWishCounter',
-      '~/components/GachaWishCounter/GachaExchange'
-    ]
+      '~/components/GachaWishCounter/GachaExchange',
+      '~/components/Inventory'
+    ],
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

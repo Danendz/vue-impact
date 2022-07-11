@@ -1,15 +1,17 @@
 <template>
-  <div>
-    Characters
-  </div>
+  <div class="character"></div>
 </template>
 
 <script>
+
 export default {
-    name: 'characters'
+  name: 'Characters',
+  
+
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.character {
+}
 </style>
