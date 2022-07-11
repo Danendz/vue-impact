@@ -42,6 +42,9 @@ img {
   width: 50px;
   height: 50px;
   transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
   &:hover {
     background: white;
   }

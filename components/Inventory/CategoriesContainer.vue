@@ -37,7 +37,6 @@ export default {
     'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
     'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
     'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
-    'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
   ],
   data() {
     return {
@@ -64,12 +63,17 @@ export default {
     justify-content: center;
     align-items: center;
     margin-left: 45px;
+
     h3 {
+      cursor: default;
       color: #d4bd91;
     }
     img {
       width: 50px;
       height: 50px;
+
+      user-select: none;
+      -webkit-user-drag: none;
       margin-right: 15px;
     }
   }
@@ -77,12 +81,19 @@ export default {
     display: flex;
     transition: 0.3s;
 
+    button {
+      border-bottom: 1px solid transparent;
+    }
     .active {
-      border-bottom: 1px solid #d4bd91;
-
+      border-bottom-color: #d4bd91;
       img {
         background: white;
       }
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
     }
   }
 
@@ -93,10 +104,76 @@ export default {
     margin-right: 15px;
     color: #d4bd91;
     h3 {
+      cursor: default;
       color: #d4bd91;
     }
     span {
+      cursor: default;
       margin-left: 15px;
+    }
+  }
+}
+@media only screen and (max-width: 1060px) {
+  .categories-container {
+    .title {
+      margin-left: 0;
+    }
+  }
+}
+@media only screen and (max-width: 930px) {
+  .categories-container {
+    width: fit-content;
+    height: 100vh;
+    flex-direction: column;
+    .title {
+      h3 {
+        display: none;
+      }
+      img {
+        margin-right: 0;
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .categories {
+      flex-direction: column;
+      margin-top: 5px;
+      border-right: 1px solid transparent;
+      button {
+        border-bottom: 0;
+      }
+      img {
+        width: 45px;
+        height: 45px;
+      }
+      .active {
+        border-right: 1px solid #d4bd91;
+      }
+    }
+    .itemCounter {
+      h3 {
+        display: none;
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 930px) and (orientation: landscape) {
+  .categories-container {
+    .title {
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .categories {
+      overflow-y: scroll;
+      img {
+        width: 35px;
+        height: 35px;
+      }
     }
   }
 }
