@@ -12,7 +12,7 @@
         v-for="(link, index) in $options.categories"
         :id="index"
         :key="index"
-        :current-active="currentActive"
+        :current-active="getCategory"
         :link="link"
         @setCurrent="setCurentCategory"
       />
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'CategoriesContainer',
   categories: [
@@ -38,14 +39,12 @@ export default {
     'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
     'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
   ],
-  data() {
-    return {
-      currentActive: 0,
-    }
+  computed: {
+    ...mapGetters('Inventory', ['getCategory']),
   },
   methods: {
     setCurentCategory(id) {
-      this.currentActive = id
+      this.$store.commit('Inventory/setCategory', id)
     },
   },
 }

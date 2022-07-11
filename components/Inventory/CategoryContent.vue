@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <button>&lt;</button>
+    <button @click="prev">&lt;</button>
     <div class="items-container">
       <div v-for="(imgSrc, index) in imgs" :key="index" class="item">
         <img :src="imgSrc" alt="item" />
@@ -137,11 +137,13 @@
         </div>
       </div>
     </div>
-    <button>></button>
+    <button @click="next">></button>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'CategoryContent',
   data() {
@@ -199,6 +201,17 @@ export default {
       ],
     }
   },
+  computed: {
+    ...mapGetters('Inventory', ['getCategory'])
+  },
+  methods: {
+    next(){
+      this.$store.commit('Inventory/nextCategory')
+    },
+    prev(){
+      this.$store.commit('Inventory/prevCategory')
+    }
+  }
 }
 </script>
 
