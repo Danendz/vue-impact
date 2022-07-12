@@ -1,5 +1,11 @@
 export default { 
-    getCategory(state) {
+    getCategoryNumber(state) {
         return state.category
+    },
+    getCategoryContent(state){
+        return state.categories
+    },
+    getSelectedItem(state){
+        return state.selectedItem
     }
 }

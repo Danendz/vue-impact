@@ -5,14 +5,14 @@
         src="https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/"
         alt="inventory"
       />
-      <h3>Weapons</h3>
+      <h3>{{getCategoryContent[getCategoryNumber].title}}</h3>
     </div>
     <div class="categories">
       <CategoryButton
         v-for="(link, index) in $options.categories"
         :id="index"
         :key="index"
-        :current-active="getCategory"
+        :current-active="getCategoryNumber"
         :link="link"
         @setCurrent="setCurentCategory"
       />
@@ -40,7 +40,7 @@ export default {
     'https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Icon_Inventory.png/',
   ],
   computed: {
-    ...mapGetters('Inventory', ['getCategory']),
+    ...mapGetters('Inventory', ['getCategoryNumber', 'getCategoryContent']),
   },
   methods: {
     setCurentCategory(id) {
