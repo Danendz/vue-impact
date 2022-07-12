@@ -19,7 +19,8 @@ export default {
   async fetch() {
     this.isLoaded = false
     const weapons = await CharacterService.getWeapons()
-    this.$store.commit('Inventory/setCategoryContent', [0, weapons])
+    const sortedWeapons = weapons.sort((a,b) => b.data.rarity - a.data.rarity)
+    this.$store.commit('Inventory/setCategoryContent', [0, sortedWeapons])
     this.$store.commit('Inventory/setCategoryContent', [1, weapons])
     this.isLoaded = true
   },

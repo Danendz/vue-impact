@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data === null" class="content-container">
+  <div v-if="dataItems === null" class="content-container">
     Здесь ничегошеньки нет
   </div>
 
@@ -7,16 +7,17 @@
     <transition appear name="fade" mode="out-in">
       <div :key="getCategoryNumber" class="items-container">
         <InventoryItems
-          v-for="({ icon, name }, index) in data"
+          v-for="({ icon, name, data }, index) in dataItems"
           :id="index"
           :key="name"
           :icon="icon"
+          :rarity="data.rarity.toString()"
           @setSelected="setSelected"
         />
       </div>
     </transition>
     <transition appear name="fade" mode="out-in">
-    <InventoryItem :key="getCategoryNumber" />
+      <InventoryItem :key="getCategoryNumber" />
     </transition>
   </div>
 </template>
@@ -31,7 +32,7 @@ export default {
       'getCategoryContent',
       'getSelectedItem',
     ]),
-    data() {
+    dataItems() {
       const data = this.getCategoryContent[this.getCategoryNumber].data
       if (data.length === 0) {
         return null
@@ -39,6 +40,10 @@ export default {
       this.setSelected(0)
       return data
     },
+   /*  dataSorted() {
+      return [...this.dataItems].sort((a,b) => b.data.rarity - a.data.rarity)
+    },
+ */
   },
   methods: {
     setSelected(id) {

@@ -3,7 +3,7 @@
       :class="['item', { activeItem: getSelectedItem === id }]"
       @click="setSelectedItem"
     >
-      <img ref="icon" :src="icon" alt="item" />
+      <img  ref="icon" :src="icon" alt="item" :style="{backgroundColor: colors[rarity]}" />
       <p>1. LvL</p>
     </div>
 </template>
@@ -22,6 +22,19 @@ export default {
       type: Number,
       required: true,
     },
+    rarity: {
+      type: String, 
+      required: true
+    }
+  },
+  data(){
+    return{
+      colors: {
+        "5": '#be8233',
+        "4": '#866ea8',
+        "3": '#738ca2'
+      }
+    }
   },
   computed: {
     ...mapGetters('Inventory', ['getSelectedItem']),
@@ -50,7 +63,7 @@ export default {
     -webkit-user-drag: none;
     border-radius: 4px;
     border-bottom-right-radius: 25px;
-    background-color: #a3702e;
+    background-color: #738ca2;
     user-select: none;
   }
   p {
@@ -61,11 +74,11 @@ export default {
     user-select: none;
   }
   &:hover {
-    transform: scale(1.05);
+    box-shadow: 0px 0px 10px white;
   }
 }
 .activeItem {
-  box-shadow: 0px 0px 10px white;
+  box-shadow: 0px 0px 15px white;
 }
 @media only screen and (max-width: 930px) {
   .item {

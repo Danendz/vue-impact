@@ -1,6 +1,6 @@
 <template>
   <div class="item-container">
-    <div class="title">
+    <div :style="{backgroundColor: colors[data.rarity.toString()]}" class="title">
       <h2>{{ data.name }}</h2>
     </div>
     <div class="stats">
@@ -37,7 +37,15 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'InventoryItem',
-
+  data(){
+    return{
+        colors: {
+        "5": '#bc6a32',
+        "4": '#866ea8',
+        "3": '#738ca2'
+      }
+    }
+  },
   computed: {
     ...mapGetters('Inventory', [
       'getCategoryNumber',
